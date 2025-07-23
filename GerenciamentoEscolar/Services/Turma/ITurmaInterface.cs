@@ -6,5 +6,7 @@ namespace GerenciamentoEscolar.Services.Turma
     {
 
         List<TurmaModel> BuscarTurma();
+
+        TurmaModel CadastrarTurmas(TurmaModel turmaModel);
     }
 }
