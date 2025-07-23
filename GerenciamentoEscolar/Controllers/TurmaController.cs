@@ -20,7 +20,7 @@ namespace GerenciamentoEscolar.Controllers
         {
             var turmas = _turmaInterface.BuscarTurma();
 
-            return View();
+            return View(turmas);
         }
     }
 }
