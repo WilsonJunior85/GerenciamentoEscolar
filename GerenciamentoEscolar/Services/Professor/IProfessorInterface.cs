@@ -6,5 +6,7 @@ namespace GerenciamentoEscolar.Services.Professor
     {
 
         List<ProfessorModel> BurcarProfessores();
+
+        ProfessorModel ObterProfessorComTurmaseAlunos(int id);
     }
 }

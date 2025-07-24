@@ -13,10 +13,18 @@ namespace GerenciamentoEscolar.Controllers
         }
 
 
-
+        [HttpGet]
         public IActionResult ListarProfessor()
         {
             var professores = _professorInterface.BurcarProfessores();
+            return View(professores);
+        }
+
+
+        [HttpGet("{id}")]
+        public IActionResult DetalhesProfessor(int id)
+        {
+            var professores = _professorInterface.ObterProfessorComTurmaseAlunos(id);
             return View(professores);
         }
     }

@@ -29,5 +29,23 @@ namespace GerenciamentoEscolar.Services.Professor
                 return null;
             }
         }
+
+        public ProfessorModel ObterProfessorComTurmaseAlunos(int id)
+        {
+            try
+            {
+                var professorTurmaAluno = _context.Professores
+                                                  .Where(p => p.Id == id)
+                                                  .Include(t => t.Turmas)
+                                                  .ThenInclude(a => a.Alunos)
+                                                  .FirstOrDefault();
+
+                return professorTurmaAluno;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
