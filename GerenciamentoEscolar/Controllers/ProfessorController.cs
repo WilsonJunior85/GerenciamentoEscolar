@@ -1,12 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GerenciamentoEscolar.Services.Professor;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GerenciamentoEscolar.Controllers
 {
     public class ProfessorController : Controller
     {
-        public IActionResult Index()
+        private readonly IProfessorInterface _professorInterface;
+
+        public ProfessorController(IProfessorInterface professorInterface)
         {
-            return View();
+            _professorInterface = professorInterface;
+        }
+
+
+
+        public IActionResult ListarProfessor()
+        {
+            var professores = _professorInterface.BurcarProfessores();
+            return View(professores);
         }
     }
 }
