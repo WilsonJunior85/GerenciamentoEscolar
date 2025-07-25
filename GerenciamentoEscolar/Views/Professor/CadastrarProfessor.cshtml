@@ -1,0 +1,66 @@
+﻿@using GerenciamentoEscolar.Dto.Professor
+
+
+@model ProfessorCriacaoDto
+
+<h1 class="mt-5">Cadastro de Professor</h1>
+
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-dark" role="alert">
+        @TempData["MensagemSucesso"]
+
+    </div>
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-dark" role="alert">
+        @TempData["MensagemErro"]
+
+    </div>
+}
+
+
+
+<form asp-action="CadastrarProfessor" asp-controller="Professor" method="post">
+
+    <div class="form-group">
+        <label class="form-label">Nome: </label>
+        <input type="text" class="form-control" placeholder="Nome" asp-for="Nome" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Email: </label>
+        <input type="text" class="form-control" placeholder="Email" asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Data de Contratação: </label>
+        <input type="text" class="form-control" placeholder="Data de Contratacao" asp-for="DataContratacao" />
+        <span asp-validation-for="DataContratacao" class="text-danger"></span>
+    </div>
+
+
+    <div class="mb-3">
+        <label class="form-label">Selecione as Turmas: </label>
+        <select class="form-select">
+            <option value="Turma A">Turma A</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Selecione a Matéria: </label>
+        <select class="form-select">
+            <option value="Matematica">Matemática</option>
+        </select>
+    </div>
+
+    <div class="d-flex flex-row justify-content-center gap-5">
+        <button type="submit" class="btn btn-primary w-25">Criar Professor</button>
+        <a class="btn btn-secondary w-25" asp-controller="Professor" asp-action="ListarProfessor">Voltar</a>
+    </div>
+</form>
+

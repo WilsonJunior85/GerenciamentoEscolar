@@ -27,5 +27,13 @@ namespace GerenciamentoEscolar.Controllers
             var professores = _professorInterface.ObterProfessorComTurmaseAlunos(id);
             return View(professores);
         }
+
+
+        [HttpGet]
+        public IActionResult CadastrarProfessor()
+        {
+   
+            return View();
+        }
     }
 }
