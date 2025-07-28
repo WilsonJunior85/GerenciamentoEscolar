@@ -45,17 +45,26 @@
 
 
     <div class="mb-3">
-        <label class="form-label">Selecione as Turmas: </label>
-        <select class="form-select">
-            <option value="Turma A">Turma A</option>
+        <label for="Turmas" class="form-label">Selecione as Turmas: </label>
+        <select id="Turmas" class="form-select" asp-for="TurmasId" multiple="multiple" name="TurmasIds">
+            @foreach (var turma in ViewBag.Turmas)
+            {
+                <option value="@turma.Value">@turma.Text</option>
+            }
         </select>
+        <span asp-validation-for="TurmasId" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label class="form-label">Selecione a Matéria: </label>
-        <select class="form-select">
-            <option value="Matematica">Matemática</option>
+        <select class="form-select" asp-for="MateriaId">
+            @foreach (var materia in ViewBag.Materias)
+            {
+                <option value="@materia.Value">@materia.Text</option>
+            }
+
         </select>
+        <span asp-validation-for="MateriaId" class="text-danger"></span>
     </div>
 
     <div class="d-flex flex-row justify-content-center gap-5">
