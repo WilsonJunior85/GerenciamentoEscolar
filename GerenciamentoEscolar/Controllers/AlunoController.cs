@@ -28,5 +28,14 @@ namespace GerenciamentoEscolar.Controllers
             return Json(new {dados = alunos});
         }
 
+
+        [HttpGet]
+        
+        public IActionResult ListarAlunos()
+        {
+            var alunos = _alunoInterface.BuscarAlunos();
+            return View(alunos);
+        }
+
     }
 }

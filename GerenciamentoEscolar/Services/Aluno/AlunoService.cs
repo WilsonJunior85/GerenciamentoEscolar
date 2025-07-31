@@ -1,5 +1,6 @@
 ﻿using GerenciamentoEscolar.Data;
 using GerenciamentoEscolar.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GerenciamentoEscolar.Services.Aluno
 {
@@ -11,6 +12,22 @@ namespace GerenciamentoEscolar.Services.Aluno
         {
             _context = context;
         }
+
+
+
+        public List<AlunoModel> BuscarAlunos()
+        {
+            try
+            {
+                var alunos = _context.Alunos.Include(t => t.Turma).ToList();
+                return alunos;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
 
 
 
