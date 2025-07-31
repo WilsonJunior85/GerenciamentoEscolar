@@ -1,4 +1,5 @@
-﻿using GerenciamentoEscolar.Models;
+﻿using GerenciamentoEscolar.Dto.Professor;
+using GerenciamentoEscolar.Models;
 
 namespace GerenciamentoEscolar.Services.Professor
 {
@@ -8,5 +9,7 @@ namespace GerenciamentoEscolar.Services.Professor
         List<ProfessorModel> BurcarProfessores();
 
         ProfessorModel ObterProfessorComTurmaseAlunos(int id);
+
+        ProfessorModel CadastrarProfessorModel(ProfessorCriacaoDto professorCriacaoDto);
     }
 }

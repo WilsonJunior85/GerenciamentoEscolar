@@ -1,6 +1,8 @@
 ﻿using GerenciamentoEscolar.Data;
+using GerenciamentoEscolar.Dto.Professor;
 using GerenciamentoEscolar.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace GerenciamentoEscolar.Services.Professor
 {
@@ -29,6 +31,38 @@ namespace GerenciamentoEscolar.Services.Professor
                 return null;
             }
         }
+
+        public ProfessorModel CadastrarProfessorModel(ProfessorCriacaoDto professorCriacaoDto)
+        {
+            try
+            {
+                var turmasSelecionadas = _context.Turmas.Where(t => professorCriacaoDto.TurmasId.Contains(t.Id)).ToList();
+
+                var professorModel = new ProfessorModel
+                {
+                    Nome = professorCriacaoDto.Nome,
+                    Email = professorCriacaoDto.Email,
+                    DataContratacao = professorCriacaoDto.DataContratacao,
+                    MateriaId = professorCriacaoDto.MateriaId,
+                    Turmas = turmasSelecionadas,
+
+
+
+                };
+
+                _context.Professores.Add(professorModel);
+                _context.SaveChanges();
+
+                return professorModel;
+                
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
 
         public ProfessorModel ObterProfessorComTurmaseAlunos(int id)
         {

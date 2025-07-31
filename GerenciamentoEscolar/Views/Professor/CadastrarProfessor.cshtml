@@ -33,20 +33,20 @@
 
     <div class="form-group">
         <label class="form-label">Email: </label>
-        <input type="text" class="form-control" placeholder="Email" asp-for="Email" />
+        <input type="email" class="form-control" placeholder="Email" asp-for="Email" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label class="form-label">Data de Contratação: </label>
-        <input type="text" class="form-control" placeholder="Data de Contratacao" asp-for="DataContratacao" />
+        <input type="date" class="form-control" placeholder="Data de Contratacão" asp-for="DataContratacao" />
         <span asp-validation-for="DataContratacao" class="text-danger"></span>
     </div>
 
 
     <div class="mb-3">
         <label for="Turmas" class="form-label">Selecione as Turmas: </label>
-        <select id="Turmas" class="form-select" asp-for="TurmasId" multiple="multiple" name="TurmasIds">
+        <select id="Turmas" class="form-select" name="TurmasId" multiple="multiple" asp-for="TurmasId">
             @foreach (var turma in ViewBag.Turmas)
             {
                 <option value="@turma.Value">@turma.Text</option>
@@ -72,4 +72,13 @@
         <a class="btn btn-secondary w-25" asp-controller="Professor" asp-action="ListarProfessor">Voltar</a>
     </div>
 </form>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/Professor/Professor.js"></script>
+
+
+
+
 

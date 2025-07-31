@@ -1,4 +1,5 @@
-﻿using GerenciamentoEscolar.Services.Materia;
+﻿using GerenciamentoEscolar.Dto.Professor;
+using GerenciamentoEscolar.Services.Materia;
 using GerenciamentoEscolar.Services.Professor;
 using GerenciamentoEscolar.Services.Turma;
 using Microsoft.AspNetCore.Mvc;
@@ -43,6 +44,36 @@ namespace GerenciamentoEscolar.Controllers
             BuscarTurmas();
             return View();
         }
+
+        [HttpPost]
+        public IActionResult CadastrarProfessor(ProfessorCriacaoDto professorCriacaoDto)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var professorModel = _professorInterface.CadastrarProfessorModel(professorCriacaoDto);
+                if (professorModel == null)
+                {
+                    TempData["MensagemErro"] = "Ocorreu um erro na operação!";
+                    BuscarMaterias();
+                    BuscarTurmas();
+                    return View(professorCriacaoDto);
+                }
+
+                TempData["MensagemSucesso"] = "Professor cadastrado com sucesso!";
+                return RedirectToAction("ListarProfessor");
+            }
+            else
+            {
+                TempData["MensagemErro"] = "Campos obrigatórios não preenchidos!";
+                BuscarMaterias();
+                BuscarTurmas();
+                return View(professorCriacaoDto);
+            }
+
+                return View();
+        }
+
 
         private void BuscarTurmas()
         {

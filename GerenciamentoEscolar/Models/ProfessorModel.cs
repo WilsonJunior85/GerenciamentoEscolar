@@ -16,7 +16,7 @@ namespace GerenciamentoEscolar.Models
 
 
         //Relacionamento entre tabelas
-        public int MateriaId { get; set; }
+        public int? MateriaId { get; set; }
         public MateriaModel Materia { get; set; }
 
         [JsonIgnore]
