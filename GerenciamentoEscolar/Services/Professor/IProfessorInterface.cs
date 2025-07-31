@@ -11,5 +11,7 @@ namespace GerenciamentoEscolar.Services.Professor
         ProfessorModel ObterProfessorComTurmaseAlunos(int id);
 
         ProfessorModel CadastrarProfessorModel(ProfessorCriacaoDto professorCriacaoDto);
+
+        List<ProfessorModel> BurcarProfessoresPorTurma(int idTurma);
     }
 }

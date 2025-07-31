@@ -37,6 +37,17 @@ namespace GerenciamentoEscolar.Controllers
         }
 
 
+
+        [HttpGet]
+        [Route("Professor/ProfessoresDaTurma/{idTurma}")]
+        public IActionResult ProfessoresDaTurma(int idTurma)
+        {
+            var professores = _professorInterface.BurcarProfessoresPorTurma(idTurma);
+            return Json(new {dados =  professores});
+        }
+
+
+
         [HttpGet]
         public IActionResult CadastrarProfessor()
         {

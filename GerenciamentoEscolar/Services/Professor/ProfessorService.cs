@@ -32,6 +32,29 @@ namespace GerenciamentoEscolar.Services.Professor
             }
         }
 
+
+
+        public List<ProfessorModel> BurcarProfessoresPorTurma(int idTurma)
+        {
+            try
+            {
+                var professoresDaTurma = _context.Turmas  // Entrei no banco de dados e depois entrei na tabela de turmas
+                                        .Where(t => t.Id == idTurma) // Peguei todas as turms
+                                        .SelectMany(t => t.Professores) //Depois selecionei todos os professores de dentro da turma(idTurma)
+                                        .Include(m => m.Materia)   //Depois disso eu fiz o inclunde da materia
+                                        .ToList();       // Depois transformei tudo em uma lista
+
+                return professoresDaTurma;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+
+
         public ProfessorModel CadastrarProfessorModel(ProfessorCriacaoDto professorCriacaoDto)
         {
             try
