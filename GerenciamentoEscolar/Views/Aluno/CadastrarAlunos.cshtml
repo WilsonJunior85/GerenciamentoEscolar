@@ -40,14 +40,13 @@
     <div class="mb-3">
         <label>Selecione Turma:</label>
         <select class="form-select" style="width:100%" asp-for="TurmaId">
-            @foreach (var turma in ViewBag.Turmas)
-            {
-           
-            <option value="@turma.Value">@turma.Text</option>
 
-            }
-            
+            @foreach (var turma in ViewBag.Turmas)
+            {           
+            <option value="@turma.Value">@turma.Text</option>
+            }          
         </select>
+        
     </div>
 
 

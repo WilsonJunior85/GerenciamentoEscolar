@@ -56,8 +56,28 @@ namespace GerenciamentoEscolar.Controllers
         [HttpPost]
         public IActionResult CadastrarAlunos(AlunoModel alunoModel)
         {
-            BuscarTurmas();
-            return View();
+            if (ModelState.IsValid)
+            {
+                var aluno = _alunoInterface.CadastrarAlunos(alunoModel);
+
+                if (aluno == null)
+                {
+                    TempData["MensagemErro"] = "Ocorreu um erro na operação!";
+                    BuscarTurmas();
+                    return View(alunoModel);
+                }
+
+                
+                TempData["MensagemSucesso"] = "Aluno cadastrado com sucesso!";
+                return RedirectToAction("ListarAlunos");
+
+            }
+            else
+            {
+                TempData["MensagemErro"] = "Campos obrigatórios não foram preenchidos!";
+                BuscarTurmas();
+                return View(alunoModel);
+            }
         }
 
 
