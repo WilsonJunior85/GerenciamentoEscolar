@@ -1,4 +1,5 @@
-﻿using GerenciamentoEscolar.Models;
+﻿using GerenciamentoEscolar.Dto.Professor;
+using GerenciamentoEscolar.Models;
 
 namespace GerenciamentoEscolar.Services.Aluno
 {
@@ -6,5 +7,6 @@ namespace GerenciamentoEscolar.Services.Aluno
     {
         List<AlunoModel> BuscarAlunosPorTurma(int idTurma);
         List<AlunoModel> BuscarAlunos();
+        //AlunoModel CadastrarAlunos(AlunoModel alunoModel);
     }
 }
