@@ -1,6 +1,10 @@
-﻿namespace GerenciamentoEscolar.Services.Historico
+﻿using GerenciamentoEscolar.Models;
+
+namespace GerenciamentoEscolar.Services.Historico
 {
     public interface IHistoricoInterface
     {
+
+        List<HistoricoModel> GerarHistorico(int idAluno);
     }
 }
