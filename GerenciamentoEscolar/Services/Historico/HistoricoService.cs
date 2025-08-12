@@ -16,6 +16,22 @@ namespace GerenciamentoEscolar.Services.Historico
 
 
 
+
+        public List<HistoricoModel> BuscarNotas()
+        {
+            try
+            {
+                var buscarNotas = _context.Historicos.Include(a => a.Aluno).Include(m => m.Materia).ToList();
+                return buscarNotas;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
+
         public List<HistoricoModel> GerarHistorico(int idAluno)
         {
             try

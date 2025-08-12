@@ -6,5 +6,8 @@ namespace GerenciamentoEscolar.Services.Historico
     {
 
         List<HistoricoModel> GerarHistorico(int idAluno);
+    
+        List<HistoricoModel> BuscarNotas();
+
     }
 }

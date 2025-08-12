@@ -37,6 +37,12 @@ namespace GerenciamentoEscolar.Controllers
         }
 
 
+        [HttpGet()]
+        public IActionResult BuscarNotas()
+        {
+            var notas = _historicoInterface.BuscarNotas();
+            return View(notas);
+        }
 
     }
 }
