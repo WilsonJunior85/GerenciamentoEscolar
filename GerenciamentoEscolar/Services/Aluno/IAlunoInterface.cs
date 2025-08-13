@@ -8,5 +8,6 @@ namespace GerenciamentoEscolar.Services.Aluno
         List<AlunoModel> BuscarAlunosPorTurma(int idTurma);
         List<AlunoModel> BuscarAlunos();
         AlunoModel CadastrarAlunos(AlunoModel alunoModel);
+        AlunoModel BuscarAlunoPorMaricula(int matricula);
     }
 }

@@ -1,16 +1,19 @@
 ﻿using GerenciamentoEscolar.Services.Historico;
+using GerenciamentoEscolar.Services.Materia;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GerenciamentoEscolar.Controllers
 {
     public class HistoricoController : Controller
     {
         private readonly IHistoricoInterface _historicoInterface;
+        private readonly IMateriaInterface _materiaInterface;
 
-
-        public HistoricoController(IHistoricoInterface historicoInterface)
+        public HistoricoController(IHistoricoInterface historicoInterface, IMateriaInterface materiaInterface)
         {
             _historicoInterface = historicoInterface;
+            _materiaInterface = materiaInterface;
         }
 
 
@@ -41,7 +44,16 @@ namespace GerenciamentoEscolar.Controllers
         public IActionResult BuscarNotas()
         {
             var notas = _historicoInterface.BuscarNotas();
+            BuscarMaterias();
             return View(notas);
+        }
+
+
+        private void BuscarMaterias()
+        {
+            var materias = _materiaInterface.BuscarMaterias();
+            var listaMateria = new SelectList(materias, "Id", "Descricao");
+            ViewBag.Materias = listaMateria;
         }
 
     }

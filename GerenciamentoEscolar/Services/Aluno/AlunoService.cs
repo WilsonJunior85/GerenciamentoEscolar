@@ -15,6 +15,25 @@ namespace GerenciamentoEscolar.Services.Aluno
 
 
 
+
+
+        public AlunoModel BuscarAlunoPorMaricula(int matricula)
+        {
+            try
+            {
+                var aluno = _context.Alunos.FirstOrDefault(m => m.Matricula == matricula);
+                return aluno;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
+
+
+
         public List<AlunoModel> BuscarAlunos()
         {
             try

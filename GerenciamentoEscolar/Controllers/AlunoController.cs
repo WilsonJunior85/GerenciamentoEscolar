@@ -26,7 +26,6 @@ namespace GerenciamentoEscolar.Controllers
 
 
         [HttpGet]
-
         public IActionResult ListarAlunos()
         {
             var alunos = _alunoInterface.BuscarAlunos();
@@ -35,7 +34,6 @@ namespace GerenciamentoEscolar.Controllers
 
 
         [HttpGet]
-
         public IActionResult CadastrarAlunos()
         {
             BuscarTurmas();
@@ -43,6 +41,13 @@ namespace GerenciamentoEscolar.Controllers
         }
 
 
+        [HttpGet]
+        [Route("/Aluno/BuscarAlunoPorMatricula")]
+        public IActionResult BuscarAlunoPorMatricula(int matricula)
+        {
+            var aluno = _alunoInterface.BuscarAlunoPorMaricula(matricula);
+            return Json(new {dados = aluno});
+        }
 
 
         [HttpGet]
