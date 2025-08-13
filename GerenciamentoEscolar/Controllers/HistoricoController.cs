@@ -48,6 +48,18 @@ namespace GerenciamentoEscolar.Controllers
             return View(notas);
         }
 
+        [HttpPost()]
+        [Route("/Historico/AtualizarNotas")]
+        public IActionResult AtualizarNotas(int idHistorico, string campo, string valor)
+        {
+            var historico = _historicoInterface.AtualizarNotas(idHistorico, campo, valor);
+            if (historico == null)
+            {
+                return Json(new { resultado = false});
+            }
+                return Json(new { resultado = true, media = historico.Media}); 
+        }
+
 
         private void BuscarMaterias()
         {

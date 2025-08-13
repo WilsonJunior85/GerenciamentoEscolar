@@ -9,5 +9,8 @@ namespace GerenciamentoEscolar.Services.Historico
     
         List<HistoricoModel> BuscarNotas();
 
+        HistoricoModel AtualizarNotas(int idHistorico, string campo, string valor);
+
+
     }
 }

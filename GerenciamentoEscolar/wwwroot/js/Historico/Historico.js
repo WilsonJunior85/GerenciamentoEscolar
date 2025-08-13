@@ -4,6 +4,20 @@
 
 $(document).ready(function () {
 
+    function showMessage(type, message) {
+        var box = $('#message-box');
+        box.removeClass("alert-success alert-danger").addClass("alert-" + type)
+        box.text(message).fadeIn();
+
+
+        setTimeout(function () {
+            box.fadeOut()
+        }, 3000)
+    }
+
+
+
+
     $(document).on('blur', '.matricula', function () {
         var matricula = $(this).val(); /*Pegando o valor do input*/
         var row = $(this).closest('tr');   /*Pegando a linha e todos o elementos "tr"*/
@@ -26,5 +40,37 @@ $(document).ready(function () {
         else {
             row.find('.nome-aluno').text('');
         }
+    })
+
+
+    $(".editable").on("blur", function () {
+
+        var linha = $(this).closest('tr');
+        var idHistorico = linha.attr('data-id');
+        var campo = $(this).attr('data-field');
+        var valor = $(this).text();
+
+        if (valor == null || valor == ""){
+            return null;
+        }
+
+        $.post("/Historico/AtualizarNotas", {idHistorico:idHistorico, campo:campo, valor:valor}, function (response) {
+
+            if (response.resultado) {
+                linha.find('.media').text(response.media);
+                showMessage("success", "Alteração salva com sucesso");
+            } else
+            {
+                showMessage("danger", "Erro na alteração");
+            }
+
+
+        }).fail(function () {
+            showMessage("danger", "Erro na comunicação com o servidor!");
+        })
+
+
+
+
     })
 })
