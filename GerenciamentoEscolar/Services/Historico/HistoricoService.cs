@@ -84,5 +84,20 @@ namespace GerenciamentoEscolar.Services.Historico
                 return null;
             }
         }
+
+        public HistoricoModel RemoverNota(int idHistorico)
+        {
+            try
+            {
+                var historico = _context.Historicos.Find(idHistorico); // O Find também faz uma busca no banco de dados pela chave primária da entidade.
+                _context.Remove(historico);
+                _context.SaveChanges();
+                return historico;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

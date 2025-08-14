@@ -48,6 +48,25 @@ namespace GerenciamentoEscolar.Controllers
             return View(notas);
         }
 
+
+        [HttpPost()]
+        [Route("/Historico/RemoverNota")]
+        public IActionResult RemoverNota(int idHistorico)
+        {
+            var historico = _historicoInterface.RemoverNota(idHistorico);
+
+           if(historico == null)
+            {
+                return Json(new { resultado = false });
+            }
+            else
+            {
+                return Json(new { resultado = true });
+            }
+
+        }
+
+
         [HttpPost()]
         [Route("/Historico/AtualizarNotas")]
         public IActionResult AtualizarNotas(int idHistorico, string campo, string valor)
