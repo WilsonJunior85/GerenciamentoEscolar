@@ -93,4 +93,43 @@ $(document).ready(function () {
             showMessage("danger", "Erro na comunicação com o servidor!");
         })
     })
+
+
+    $(document).on("click", ".btn-add", function () {
+        var linha = $("#novoHistorico");
+        var matricula = $(".matriculaAdd").val();
+        var materiaId = $("#materiaSelect").val();
+
+        var notas = {
+            Nota1: linha.find("td:eq(3)").text(),
+            Nota2: linha.find("td:eq(4)").text(),
+            Nota3: linha.find("td:eq(5)").text(),
+            Nota4: linha.find("td:eq(6)").text(),
+
+        }
+
+
+        var temNotaInvalida = Object.values(notas).some(nota => nota == null || nota == "");
+        if (temNotaInvalida || matricula == null || matricula == "" ) {
+            showMessage("danger", "Alguma informação não foi inserida!");
+            return;
+        }
+
+        $.post("/Historico/SalvarNotas", { notas, matricula, materiaId }, function (response) {
+            if (response.resultado) {
+                location.reload();
+
+
+            }
+            else
+            {
+                showMessage("danger", "Erro ao cadastrar uma nota!");
+            }
+        }).fail(function () {
+
+            showMessage("danger", "Erro na comunicação com o servidor!");
+        })
+    })
+
+
 })

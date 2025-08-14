@@ -35,7 +35,7 @@
                         </h6>
                         <h6>
                             <strong>Data de Nascimento:</strong>
-                            @Model[0].Aluno.DataNascimento
+                            @Model[0].Aluno.DataNascimento?.ToString("dd/MM/yyyy")
                         </h6>
                         <h6><strong>Email:</strong> @Model[0].Aluno.Email</h6>
                         <h6>

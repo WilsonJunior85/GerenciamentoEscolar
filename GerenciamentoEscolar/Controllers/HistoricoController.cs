@@ -1,4 +1,5 @@
-﻿using GerenciamentoEscolar.Services.Historico;
+﻿using GerenciamentoEscolar.Models;
+using GerenciamentoEscolar.Services.Historico;
 using GerenciamentoEscolar.Services.Materia;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -65,6 +66,19 @@ namespace GerenciamentoEscolar.Controllers
             }
 
         }
+
+        [HttpPost()]
+        [Route("/Historico/SalvarNotas")]
+        public IActionResult SalvarNotas(HistoricoModel notas, int matricula, int materiaId)
+        {
+            var historico = _historicoInterface.SalvarNotas(notas, matricula, materiaId);
+            if (historico == null)
+            {
+                return Json(new { resultado = false });
+            }
+            return Json(new { resultado = true, media = historico.Media });
+        }
+
 
 
         [HttpPost()]

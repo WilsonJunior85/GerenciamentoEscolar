@@ -12,5 +12,7 @@ namespace GerenciamentoEscolar.Services.Historico
         HistoricoModel AtualizarNotas(int idHistorico, string campo, string valor);
 
         HistoricoModel RemoverNota(int idHistorico);
+
+        HistoricoModel SalvarNotas(HistoricoModel historico, int matricula, int materiaId);
     }
 }
